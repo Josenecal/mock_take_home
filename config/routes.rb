@@ -1,3 +1,5 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get 'api/v1/subscriptions', to: 'api/v1/subscriptions#index'
+  post 'api/v1/subscriptions/new', to: 'api/v1/subscriptions#create'
+  delete 'api/v1/subscriptions/cancel', to: 'api/v1/subscriptions#delete'
 end
