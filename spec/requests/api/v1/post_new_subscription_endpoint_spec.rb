@@ -8,9 +8,12 @@ RSpec.describe "Api::V1::Subscriptions", type: :request do
     end
 
     it "accepts a customer_id and a tea_id parameter and creates (and returns) that new subscription object" do
-        post "http://localhost:300/api/v1/subscriptions/", params: {tea_id: @tea_1.id, customer_id: @customer_1.id}
-        response_body = JSON.parse(response.body, symbolize_names: true)
-        binding.pry
+        post "http://localhost:300/api/v1/subscriptions/", params: {tea_id: @tea_1.id, customer_id: @customer_1.id, frequency: "weekly"}
+        actual = JSON.parse(response.body, symbolize_names: true)
+        expect(actual.keys).to eq [:data]
+        expect(actual[:data].keys.count).to eq 3
+        expect(actual[:data][:type]).to eq "subscription"
+        expect(actual[:data][:id]).to match /\A\d+\Z/
     end
     
   end
