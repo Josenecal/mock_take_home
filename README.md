@@ -125,6 +125,7 @@ get "http://localhost:300/api/v1/subscriptions?customer_id=1"
 
 ## Database 
 
-[img]
+<img width="850" alt="Screen Shot 2022-08-05 at 12 59 48 AM" src="https://user-images.githubusercontent.com/70451678/183022267-c31a5599-29eb-4c92-81a0-01891cbd2c87.png">
+
 
 The Schema for this PostgreSQL database is a simple many-to-many setup with subscriptions connecting one single customer to one tea. Given the constraints of the prompt, there is no way to tailor a quantity, and so assuming that each tea is sold in a fixed quantity and therefore an equal price (for simplicity's sake), price was therefore based entirely upon the user's indicated `frequency` parameter, incorporating a slight logorithmic discount scale with quantity purchased and calculating price for an assumed monthly billing cycle. These are all set in the method `::price_setter(freq)` in  `app/models/subscription.rb`
